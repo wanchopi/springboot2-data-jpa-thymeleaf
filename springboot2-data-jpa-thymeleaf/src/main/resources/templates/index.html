@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/layout">
+<head>
+	<title>index :: n.b.a.</title>
+</head>
+<body>
+	<!-- body -->
+	<div layout:fragment="content">
+		<div class="container-fluid" align="center">	
+			<div class="col-lg-9" style="margin-top: 50px;">
+				<div th:if="${!players.isEmpty()}">
+					<table class="table">
+						<thead class="thead-dark">
+							<tr align="center">
+								<th scope="col">ID</th>
+								<th scope="col">NAME</th>
+								<th scope="col">E-MAIL</th>
+								<th scope="col">TEAM</th>
+								<th scope="col">EDIT</th>
+								<th scope="col">DELETE</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr align="center" th:each="player: ${players}">
+								<td th:text="${player.id}"></td>
+								<td th:text="${player.name}"></td>
+								<td th:text="${player.email}"></td>
+								<td th:text="${player.team.name}"></td>
+								<td><a th:href="@{/edit/{id}(id=${player.id})}"><i class="fa fa-edit"></i></a></td>
+								<td><a th:href="@{/delete/{id}(id=${player.id})}"><i class="fa fa-times"></i></a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div th:unless="${!players.isEmpty()}">
+					<p>no items to show</p> 
+				</div>
+				<a class="a-save" id="a-save" th:href="@{/create}">save a new Player</a>
+			</div>
+		</div>
+	</div> 
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
